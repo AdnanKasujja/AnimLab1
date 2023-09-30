@@ -6,6 +6,8 @@ public class PathController : MonoBehaviour
 {
     [SerializeField]
     public PathManager pathManager;
+    public Animator animator;
+    bool isWalking;
 
     List<Waypoint> thePath;
     Waypoint target;
@@ -15,6 +17,9 @@ public class PathController : MonoBehaviour
 
     void Start()
     {
+        isWalking = false;
+        animator.SetBool("isWalking", isWalking);
+
         thePath = pathManager.GetPath();
         if (thePath != null && thePath.Count > 0)
         {
@@ -55,8 +60,20 @@ public class PathController : MonoBehaviour
 
     void Update()
     {
-        rotateTowardsTarget();
-        moveForward();
+        if (Input.anyKeyDown)
+        {
+            //toggle if any key is pressed
+            isWalking = !isWalking;
+            animator.SetBool("isWalking", isWalking);
+        }
+
+
+        if (isWalking)
+        {
+            rotateTowardsTarget();
+            moveForward();
+        }
+        
     }
 
 
