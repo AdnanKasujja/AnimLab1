@@ -60,7 +60,7 @@ public class PathController : MonoBehaviour
 
     void Update()
     {
-        if (Input.anyKeyDown)
+        if (Input.GetKeyDown("e"))
         {
             //toggle if any key is pressed
             isWalking = !isWalking;
