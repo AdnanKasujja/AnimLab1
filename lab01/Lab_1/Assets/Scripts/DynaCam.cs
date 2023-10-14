@@ -6,14 +6,22 @@ public class DynaCam : MonoBehaviour
 {
     private void Update()
     {
-        Vector3 inputDir = new Vector3(0, 0, 0);
+        Vector3 inputDirection = new Vector3(0, 0, 0);
+        //Moving the camera
+        if (Input.GetMouseButton(0)) inputDirection.z = +1f;
 
-        if (Input.GetMouseButton(0)) inputDir.z = +1f;
+        Vector3 moveDirection = transform.forward * inputDirection.z + transform.right * inputDirection.x;
 
-        Vector3 moveDir = transform.forward * inputDir.z + transform.right * inputDir.x;
+        
+        float movementSpeed = 10f;
+        transform.position += moveDirection * movementSpeed * Time.deltaTime;
 
-        float moveSpeed = 10f;
-        transform.position += moveDir * moveSpeed * Time.deltaTime;
+        //Rotating the camera
+        float rotationDirection = 0f;
+        if (Input.GetMouseButton(0)) rotationDirection = -3f;
+
+        float rotationSpeed = 100f;
+        transform.eulerAngles += new Vector3(0, rotationDirection * rotationSpeed *Time.deltaTime, 0);
 
     }
 }
