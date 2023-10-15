@@ -6,6 +6,7 @@ public class DynaCam : MonoBehaviour
 {
     private void Update()
     {
+        
         Vector3 inputDirection = new Vector3(0, 0, 0);
         //Moving the camera
         if (Input.GetMouseButton(0)) inputDirection.z = +1f;
@@ -22,6 +23,8 @@ public class DynaCam : MonoBehaviour
 
         float rotationSpeed = 100f;
         transform.eulerAngles += new Vector3(0, rotationDirection * rotationSpeed *Time.deltaTime, 0);
+        
 
     }
+
 }
