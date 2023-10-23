@@ -10,7 +10,7 @@ public class NavMesh : MonoBehaviour
     private NavMeshAgent agent;
 
     private Animator animator;
-    bool isSprinting = true;
+    bool isWalking = true;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +23,7 @@ public class NavMesh : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isSprinting)
+        if (isWalking)
             agent.destination = Target.transform.position;
         else 
         {
@@ -35,7 +35,7 @@ public class NavMesh : MonoBehaviour
     {
         if (other.name == "Cube")
         {
-            isSprinting = false;
+            isWalking = false;
             animator.SetTrigger("Attacking");
         }
     }
@@ -44,7 +44,7 @@ public class NavMesh : MonoBehaviour
     {
         if (other.name == "Cube")
         {
-            isSprinting = true;
+            isWalking = true;
             animator.SetTrigger("Sprinting");
         }
     }
