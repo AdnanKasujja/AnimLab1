@@ -8,6 +8,7 @@ public class PathController : MonoBehaviour
     public PathManager pathManager;
     public Animator animator;
     bool isWalking;
+    bool isIdle;
 
     List<Waypoint> thePath;
     Waypoint target;
@@ -62,10 +63,10 @@ public class PathController : MonoBehaviour
     {
         if (Input.GetKeyDown("e"))
         {
-            //toggle if any key is pressed
             isWalking = !isWalking;
             animator.SetBool("isWalking", isWalking);
         }
+
 
 
         if (isWalking)

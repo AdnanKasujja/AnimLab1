@@ -45,7 +45,7 @@ public class NavMesh : MonoBehaviour
         if (other.name == "Cube")
         {
             isWalking = true;
-            animator.SetTrigger("Sprinting");
+            animator.SetBool("isWalking", isWalking);
         }
     }
 }
