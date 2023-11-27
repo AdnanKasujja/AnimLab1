@@ -22,6 +22,9 @@ public class MovePlayer : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        anim = GetComponent<Animator>();
+        anim.SetFloat("XMovement", 1f);
+        anim.SetFloat("ZMovement", 1f);
     }
 
     // Update is called once per frame
@@ -42,5 +45,8 @@ public class MovePlayer : MonoBehaviour
 
         movementDirection.y = movementDirection.y + (Physics.gravity.y * Gravity * Time.deltaTime);
         controller.Move(movementDirection * Time.deltaTime);
+
+        anim.SetFloat("XMovement", movementDirection.x);
+        anim.SetFloat("ZMovement", movementDirection.z);
     }
 }
