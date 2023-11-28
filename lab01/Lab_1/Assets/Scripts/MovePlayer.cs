@@ -14,8 +14,14 @@ public class MovePlayer : MonoBehaviour
     public Animator anim;
     //public Transform pivot;
     public float rotationSpeed;
+    private float animTransition = 0.15f;
 
     public GameObject playerModel;
+
+    int jumpAnim;
+
+
+    
 
 
     // Start is called before the first frame update
@@ -25,6 +31,7 @@ public class MovePlayer : MonoBehaviour
         anim = GetComponent<Animator>();
         anim.SetFloat("XMovement", 1f);
         anim.SetFloat("ZMovement", 1f);
+        jumpAnim = Animator.StringToHash("Rifle Jump In Place");
     }
 
     // Update is called once per frame
@@ -35,11 +42,13 @@ public class MovePlayer : MonoBehaviour
         movementDirection = movementDirection.normalized * movementSpeed;
         movementDirection.y = ystore;
 
+
         if (controller.isGrounded)
         {
             if (Input.GetButtonDown("Jump"))
             {
                 movementDirection.y = jumpingForce;
+                anim.CrossFade(jumpAnim, animTransition);
             }
         }
 
