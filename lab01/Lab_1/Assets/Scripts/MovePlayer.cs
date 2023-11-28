@@ -59,14 +59,32 @@ public class MovePlayer : MonoBehaviour
 
         anim.SetFloat("XMovement", movementDirection.x);
         anim.SetFloat("ZMovement", movementDirection.z);
+
+        if (Input.GetMouseButton(1))
+        {
+            anim.SetBool("isReloading", true);
+        }
+        else
+        {
+            anim.SetBool("isReloading", false);
+        }
+
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.name == "Cube")
         {
-      
-            anim.CrossFade(coverAnim, animTransition);
+            anim.SetBool("inCover", true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.name == "Cube")
+        {
+            anim.SetBool("inCover", false);
         }
     }
 
