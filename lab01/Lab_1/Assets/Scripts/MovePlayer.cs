@@ -19,6 +19,7 @@ public class MovePlayer : MonoBehaviour
     public GameObject playerModel;
 
     int jumpAnim;
+    int coverAnim;
 
 
     
@@ -32,6 +33,7 @@ public class MovePlayer : MonoBehaviour
         anim.SetFloat("XMovement", 1f);
         anim.SetFloat("ZMovement", 1f);
         jumpAnim = Animator.StringToHash("Rifle Jump In Place");
+        coverAnim = Animator.StringToHash("Rifle Stand To Kneel");
     }
 
     // Update is called once per frame
@@ -58,4 +60,14 @@ public class MovePlayer : MonoBehaviour
         anim.SetFloat("XMovement", movementDirection.x);
         anim.SetFloat("ZMovement", movementDirection.z);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.name == "Cube")
+        {
+      
+            anim.CrossFade(coverAnim, animTransition);
+        }
+    }
+
 }

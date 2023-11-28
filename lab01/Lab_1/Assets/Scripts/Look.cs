@@ -5,17 +5,17 @@ using UnityEngine;
 public class Look : MonoBehaviour {
 
     public Transform target;
+    public Transform aimTowards;
+    public Transform pivot;
 
     public Vector3 offset;
 
     public bool useOffsetValues;
 
     public float rotateSpeed;
-
-    public Transform pivot;
-
     public float maxViewAngle;
     public float minViewAngle;
+    public float distanceToAim;
 
     public bool invertY;
 
@@ -31,9 +31,19 @@ public class Look : MonoBehaviour {
         pivot.transform.parent = null;
         //Cursor.lockState = CursorLockMode.Locked; //This is what allows the mouse to disappear, having issues with it
     }
-	
-	// Update is called once per frame
+
+    // Update is called once per frame
+    void Update()
+    {
+        aimTowards.position = pivot.position + pivot.forward * distanceToAim;
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 20.0F, Color.red);
+    }
+
+
+
 	void LateUpdate () {
+
+        
 
         pivot.transform.position = target.transform.position;
 
