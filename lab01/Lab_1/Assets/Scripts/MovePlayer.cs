@@ -20,6 +20,7 @@ public class MovePlayer : MonoBehaviour
 
     int jumpAnim;
     int coverAnim;
+    int rollAnim;
 
 
     
@@ -34,6 +35,7 @@ public class MovePlayer : MonoBehaviour
         anim.SetFloat("ZMovement", 1f);
         jumpAnim = Animator.StringToHash("Rifle Jump In Place");
         coverAnim = Animator.StringToHash("Rifle Stand To Kneel");
+        rollAnim = Animator.StringToHash("Run To Rolling");
     }
 
     // Update is called once per frame
@@ -67,6 +69,11 @@ public class MovePlayer : MonoBehaviour
         else
         {
             anim.SetBool("isReloading", false);
+        }
+
+        if (Input.GetKeyDown("f"))
+        {
+            anim.CrossFade(rollAnim, animTransition);
         }
 
 
